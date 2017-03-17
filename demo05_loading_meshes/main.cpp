@@ -13,96 +13,6 @@ struct Shader {
 /*
 Structure for Vertex Buffer
 */
-/*
-struct Triangle {
-
-	std::vector<glm::vec3> vertices_list;
-	std::vector<glm::vec3> colors_list;
-	std::vector<glm::vec2> texCoords_list;
-
-	GLuint vertexBufferObject[3];
-
-	GLuint vertexArray = 0;
-
-	void init() {
-		vertices_list = {
-			{ 0.0f, 0.5f, 0.0f },
-			{ 0.5f, -0.5f, 0.0f },
-			{ -0.5f, -0.5f, 0.0f }
-		};
-
-		colors_list = {
-			{ 1.0f, 0.0f, 0.0f },
-			{ 0.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f }
-		};
-
-		texCoords_list = {
-			{ 0.5, 1.0f },
-			{ 1.0f, 0.0f },
-			{ 0.0f, 0.0f }
-		};
-
-		for (int i = 0; i < texCoords_list.size(); i++) {
-			texCoords_list[i] = 1.0f - texCoords_list[i];
-		}
-
-		// Create Vertex Buffer Objects
-		glGenBuffers(3, this->vertexBufferObject);
-		// Bind Vertices and fill buffer
-		glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObject[0]);
-		glBufferData(GL_ARRAY_BUFFER, vertices_list.size() * sizeof(glm::vec3), vertices_list.data(), GL_STATIC_DRAW);
-		// Bind Color and fill buffer
-		glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObject[1]);
-		glBufferData(GL_ARRAY_BUFFER, colors_list.size() * sizeof(glm::vec3), colors_list.data(), GL_STATIC_DRAW);
-		// Bind Texturecoord and fill buffer
-		glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObject[2]);
-		glBufferData(GL_ARRAY_BUFFER, texCoords_list.size() * sizeof(glm::vec2), texCoords_list.data(), GL_STATIC_DRAW);
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		// Create Vertex Array
-		glGenVertexArrays(1, &vertexArray);
-		glBindVertexArray(vertexArray);
-
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		glEnableVertexAttribArray(2);
-
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject[0]);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject[1]);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject[2]);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0);
-
-		glBindVertexArray(0);
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
-
-	}
-
-	void bind() {
-		glBindVertexArray(this->vertexArray);
-	}
-
-	void unbind() {
-		glBindVertexArray(0);
-	}
-
-	void release() {
-		glDeleteVertexArrays(1, &vertexArray);
-		glDeleteBuffers(3, this->vertexBufferObject);
-	}
-
-	GLuint size() {
-		return vertices_list.size();
-	}
-};
-*/
 
 struct MeshOBJ_Test {
 
@@ -128,6 +38,8 @@ struct MeshOBJ_Test {
 	GLuint vertexArrays;
 
 	void init(std::string fn) {
+		int preTime = SDL_GetTicks();
+
 		std::vector<std::string> contents;
 		std::vector<std::string> temp;
 
@@ -229,6 +141,13 @@ struct MeshOBJ_Test {
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
+
+		float delta = (SDL_GetTicks() - preTime) / 1000.0f;
+
+		std::cout << "Loading Time: " << delta << std::endl;
+
+		std::cout << "Number Vertices: " << vertices_list.size() << std::endl;
+
 	}
 
 	void handleFace(std::string str, GLuint& vertice, GLuint& texCoord, GLuint& normal) {
@@ -251,6 +170,7 @@ struct MeshOBJ_Test {
 		glDeleteBuffers(3, this->vertexBufferObjects);
 	}
 };
+
 class LoadingMeshApp : public IApp {
 public:
 
@@ -275,7 +195,13 @@ public:
 
 	float yrot = 0.0f;
 
+	float maxTime = 1.0f;
+
+	unsigned int frame = 0;
+	float dt = 0.0f;
+
 	virtual void init() {
+
 		// Make sure that this is enabled
 		glEnable(GL_DEPTH_TEST);
 		//tris.init();
@@ -320,12 +246,28 @@ public:
 
 	virtual void update(float delta) {
 		// Use this some other time
+		frame++;
+
+		dt += delta;
+
+		float fps = frame / dt;
+
 
 		yrot += 90.0f * delta;
 
 
 		if (yrot > 360.0f) {
 			yrot -= 360.0f;
+		}
+
+		if (maxTime >= 1.0f) {
+			std::cout << "fps: " << fps << std::endl;
+			maxTime = 0.0f;
+			dt = 0.0f;
+			frame = 0;
+		}
+		else {
+			maxTime += delta;
 		}
 	}
 

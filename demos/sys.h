@@ -7,12 +7,14 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
 // 3rd Party Libraries
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+#include <glm/gtx/hash.hpp>
 #include <GL/glew.h>
 // Demo Libraries
 #include "util.h"

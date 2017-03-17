@@ -1,0 +1,36 @@
+Unoptimized: 11808 vertices
+
+Optimized: 2147 vertices :)
+
+optimized: 11808 indencies
+
+size of vec3: 12 bytes
+size of vec2: 8  bytes
+size of uint: 4  bytes
+
+
+Unoptimized Values:
+------------------------------
+vertices: 	141696 bytes
+texCoords: 	 94464 bytes
+normals:	141696 bytes
+______________________________
+Total:		377856 bytes
+
+Optimized Values:
+------------------------------
+vertices:	 25764 bytes
+texcoords:	 17176 bytes
+normals:	 25764 bytes
+indencies:	 47232 bytes
+______________________________
+Total:		115963 bytes
+
+Delta: U - O = D
+
+D = 261893 bytes
+% = 69.31 percent less memory 
+for optimized version of the 
+code :). I'll be using this 
+With my api code :D
+
