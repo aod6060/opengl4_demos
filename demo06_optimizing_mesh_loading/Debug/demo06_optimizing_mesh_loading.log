@@ -1,1 +1,4 @@
-﻿
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  LINK : ..\bin\demo06_optimizing_mesh_loading.exe not found or not built by the last incremental link; performing full link
+  demo06_optimizing_mesh_loading.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo06_optimizing_mesh_loading\..\bin\demo06_optimizing_mesh_loading.exe
+  demo06_optimizing_mesh_loading.vcxproj -> ..\bin\demo06_optimizing_mesh_loading.pdb (Partial PDB)

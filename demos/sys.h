@@ -19,4 +19,5 @@
 // Demo Libraries
 #include "util.h"
 #include "app.h"
+#include "input.h"
 #include "graphics.h"

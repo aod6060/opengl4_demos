@@ -39,7 +39,7 @@ void app_init(std::string cap, Uint32 width, Uint32 height, IApp* app) {
 
 	glewInit();
 
-
+	input_init();
 	// Other Initis that I might want for an example
 
 	if (data.app != nullptr) {
@@ -65,15 +65,16 @@ void app_update() {
 			if (e.type == SDL_QUIT) {
 				app_exit();
 			}
+
+			input_doEvent(e);
 		}
-
-
 
 		if (data.app != nullptr) {
 			data.app->update(deltaTime);
 			data.app->render();
 		}
 
+		input_update();
 		SDL_GL_SwapWindow(data.window);
 	}
 }
