@@ -1,0 +1,14 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+main.cpp(81): warning C4018: '<': signed/unsigned mismatch
+main.cpp(129): warning C4018: '<': signed/unsigned mismatch
+main.cpp(177): warning C4018: '<': signed/unsigned mismatch
+main.cpp(186): warning C4018: '<': signed/unsigned mismatch
+main.cpp(206): warning C4018: '<': signed/unsigned mismatch
+main.cpp(223): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+c:\users\fred\desktop\project4\opengl_exp\demos\obj_to_smf\main.cpp(67): warning C4715: 'SDL_main': not all control paths return a value
+  All 936 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  obj_to_smf.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\obj_to_smf\..\bin\obj_to_smf.exe
+  obj_to_smf.vcxproj -> ..\bin\obj_to_smf.pdb (Full PDB)

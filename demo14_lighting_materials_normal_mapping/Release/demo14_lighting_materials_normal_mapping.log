@@ -1,0 +1,7 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+  Generating code
+  All 835 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  demo14_lighting_materials_normal_mapping.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo14_lighting_materials_normal_mapping\..\bin\demo14_lighting_materials_normal_mapping.exe
+  demo14_lighting_materials_normal_mapping.vcxproj -> ..\bin\demo14_lighting_materials_normal_mapping.pdb (Full PDB)

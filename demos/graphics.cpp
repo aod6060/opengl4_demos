@@ -245,6 +245,8 @@ void Mesh::init(std::string fn) {
 			glm::vec3 vertex;
 			glm::vec2 texCoord;
 			glm::vec3 normal;
+			glm::vec3 tangent;
+			glm::vec3 bitangent;
 			// Grab Vertex
 			vertex.x = util_toFloat(temp[1]);
 			vertex.y = util_toFloat(temp[2]);
@@ -256,10 +258,20 @@ void Mesh::init(std::string fn) {
 			normal.x = util_toFloat(temp[6]);
 			normal.y = util_toFloat(temp[7]);
 			normal.z = util_toFloat(temp[8]);
+			// Grab Tangents
+			tangent.x = util_toFloat(temp[9]);
+			tangent.y = util_toFloat(temp[10]);
+			tangent.z = util_toFloat(temp[11]);
+			// Grab Bitangents
+			bitangent.x = util_toFloat(temp[12]);
+			bitangent.x = util_toFloat(temp[13]);
+			bitangent.x = util_toFloat(temp[14]);
 			// Load Values into lists
 			vertices.push_back(vertex);
 			texCoords.push_back(texCoord);
 			normals.push_back(normal);
+			tangents.push_back(tangent);
+			bitangents.push_back(bitangent);
 		}
 		else if (temp[0] == "i") {
 			int index = util_toInt(temp[1]);
@@ -272,7 +284,7 @@ void Mesh::init(std::string fn) {
 	in.close();
 
 	// Generate VBOs
-	glGenBuffers(3, this->vertexBufferObjects);
+	glGenBuffers(5, this->vertexBufferObjects);
 	// Create Vertex Buffer
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[0]);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
@@ -282,6 +294,14 @@ void Mesh::init(std::string fn) {
 	// Create Normal Buffer
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[2]);
 	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals.data(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	// Create Tangent Buffer
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[3]);
+	glBufferData(GL_ARRAY_BUFFER, tangents.size() * sizeof(glm::vec3), tangents.data(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	// Create BiTangent Buffer
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[4]);
+	glBufferData(GL_ARRAY_BUFFER, bitangents.size() * sizeof(glm::vec3), bitangents.data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	// Create Index Buffer
 	glGenBuffers(1, &this->indexBufferObject);
@@ -297,6 +317,8 @@ void Mesh::init(std::string fn) {
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
+	glEnableVertexAttribArray(4);
 	// Bind Buffer and set it as a reference to vertexArray
 	// Vertex
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[0]);
@@ -307,6 +329,12 @@ void Mesh::init(std::string fn) {
 	// Normal
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[2]);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	// Tangent
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[3]);
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	// Bitangent
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferObjects[4]);
+	glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	// Unbind Vertex Attrib Array
 	glBindVertexArray(0);
 	// Unbind VBO
@@ -315,6 +343,8 @@ void Mesh::init(std::string fn) {
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+	glDisableVertexAttribArray(4);
 }
 
 void Mesh::render() {
@@ -331,7 +361,7 @@ void Mesh::release() {
 	// Delete Index Buffer
 	glDeleteBuffers(1, &this->indexBufferObject);
 	// Delete Vertex Buffer Object
-	glDeleteBuffers(3, this->vertexBufferObjects);
+	glDeleteBuffers(5, this->vertexBufferObjects);
 }
 // Shader
 void Shader::init(GLenum type, std::string fn) {

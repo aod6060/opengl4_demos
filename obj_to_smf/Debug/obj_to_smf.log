@@ -1,3 +1,1 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  obj_to_smf.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\obj_to_smf\..\bin\obj_to_smf.exe
-  obj_to_smf.vcxproj -> ..\bin\obj_to_smf.pdb (Partial PDB)
+﻿

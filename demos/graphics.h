@@ -80,9 +80,11 @@ struct Mesh {
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> texCoords;
 	std::vector<glm::vec3> normals;
+	std::vector<glm::vec3> tangents;
+	std::vector<glm::vec3> bitangents;
 	std::vector<GLuint> indencies;
 	// VBO ids
-	GLuint vertexBufferObjects[3];
+	GLuint vertexBufferObjects[5];
 	// Index id
 	GLuint indexBufferObject;
 	// Vertex Array

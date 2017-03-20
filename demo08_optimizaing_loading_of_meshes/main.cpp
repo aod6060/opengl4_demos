@@ -253,7 +253,7 @@ public:
 
 int main(int argc, char** argv) {
 	OptimizingLoadingOfMeshesApp app;
-	app_init("Testing New Mesh Format (*.smf files) App", 800, 600, &app);
+	app_init("Testing New Mesh Format (*.smf files) App", 1366, 768, &app);
 	app_update();
 	app_release();
 	return 0;

@@ -12,9 +12,15 @@ struct Vertex {
 	glm::vec3 vertex;
 	glm::vec2 texCoord;
 	glm::vec3 normal;
+	glm::vec3 tangent;
+	glm::vec3 bitangent;
 
 	bool operator == (const Vertex& other) const {
-		return this->vertex == other.vertex && this->texCoord == other.texCoord && this->normal == other.normal;
+		return this->vertex == other.vertex && 
+			this->texCoord == other.texCoord && 
+			this->normal == other.normal && 
+			this->tangent == other.tangent && 
+			this->bitangent == other.bitangent;
 	}
 };
 
@@ -23,6 +29,8 @@ struct MeshData {
 	std::vector<glm::vec3> vertexList;
 	std::vector<glm::vec2> texCoordList;
 	std::vector<glm::vec3> normalList;
+	std::vector<glm::vec3> tangentList;
+	std::vector<glm::vec3> bitangentList;
 	std::vector<GLuint> indexList;
 };
 
@@ -32,7 +40,9 @@ namespace std {
 			size_t h1 = hash<glm::vec3>()(vm.vertex);
 			size_t h2 = hash<glm::vec2>()(vm.texCoord);
 			size_t h3 = hash<glm::vec3>()(vm.normal);
-			return h1 ^ (h2 << 1) & (h3 << 2);
+			size_t h4 = hash<glm::vec3>()(vm.tangent);
+			size_t h5 = hash<glm::vec3>()(vm.bitangent);
+			return h1 ^ (h2 << 1) & (h3 << 2) & (h4 << 3) & (h5 << 4);
 		}
 	};
 }
@@ -105,6 +115,11 @@ void convertObjMeshToSMF(std::string fn, std::string converted) {
 		temp.clear();
 	}
 
+	// This is were the tangents and bitangents will be created...
+	std::vector<glm::vec3> vtan;
+	std::vector<glm::vec3> vbtan;
+
+
 	// unorder_maps
 	std::unordered_map<Vertex, GLuint> uniqueVertex;
 	std::vector<Vertex> vertices;
@@ -112,6 +127,28 @@ void convertObjMeshToSMF(std::string fn, std::string converted) {
 
 	// Compute Vertices
 	for (int i = 0; i < f.size(); i++) {
+
+		// Compute Tangents and Bi Tangents
+		// Compute Edges
+		glm::vec3 edge1 = v[f[i].vertex[1]] - v[f[i].vertex[0]];
+		glm::vec3 edge2 = v[f[i].vertex[2]] - v[f[i].vertex[0]];
+		// Compute UV Edges
+		glm::vec2 deltaUV1 = vt[f[i].texCoord[1]] - vt[f[i].texCoord[0]];
+		glm::vec2 deltaUV2 = vt[f[i].texCoord[2]] - vt[f[i].texCoord[0]];
+		// Caculate f
+		float value = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
+		// Tangents
+		glm::vec3 tangent;
+		tangent.x = value * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
+		tangent.y = value * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
+		tangent.z = value * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+		tangent = glm::normalize(tangent);
+		glm::vec3 bitangent;
+		bitangent.x = (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x);
+		bitangent.y = (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y);
+		bitangent.z = (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z);
+		bitangent = glm::normalize(bitangent);
+
 		for (int j = 0; j < 3; j++) {
 			Vertex vertex = {};
 
@@ -120,6 +157,10 @@ void convertObjMeshToSMF(std::string fn, std::string converted) {
 			vertex.texCoord = vt[f[i].texCoord[j]];
 
 			vertex.normal = vn[f[i].normal[j]];
+
+			vertex.tangent = tangent;
+
+			vertex.bitangent = bitangent;
 
 			if (uniqueVertex.count(vertex) == 0) {
 				uniqueVertex[vertex] = vertices.size();
@@ -137,6 +178,8 @@ void convertObjMeshToSMF(std::string fn, std::string converted) {
 		mesh.vertexList.push_back(vertices[i].vertex);
 		mesh.texCoordList.push_back(vertices[i].texCoord);
 		mesh.normalList.push_back(vertices[i].normal);
+		mesh.tangentList.push_back(vertices[i].tangent);
+		mesh.bitangentList.push_back(vertices[i].bitangent);
 	}
 
 	// Load Indexs for mesh
@@ -164,8 +207,16 @@ void saveMeshToSMF(MeshData& mesh, std::string fn) {
 		glm::vec3 vertex = mesh.vertexList[i];
 		glm::vec2 texCoord = mesh.texCoordList[i];
 		glm::vec3 normal = mesh.normalList[i];
+		glm::vec3 tangent = mesh.tangentList[i];
+		glm::vec3 bitangent = mesh.bitangentList[i];
 
-		out << "v " << vertex.x << " " << vertex.y << " " << vertex.z << " " << texCoord.x << " " << texCoord.y << " " << normal.x << " " << normal.y << " " << normal.z << std::endl;
+		out << "v ";
+		out << vertex.x << " " << vertex.y << " " << vertex.z << " ";
+		out << texCoord.x << " " << texCoord.y << " ";
+		out << normal.x << " " << normal.y << " " << normal.z << " ";
+		out << tangent.x << " " << tangent.y << " " << tangent.z << " ";
+		out << bitangent.x << " " << bitangent.y << " " << bitangent.z << " ";
+		out << std::endl;
 	}
 
 	// Save Indexs to file
