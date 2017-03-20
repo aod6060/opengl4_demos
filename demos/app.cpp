@@ -104,3 +104,7 @@ Uint32 app_getHeight() {
 void app_exit() {
 	data.isRunning = false;
 }
+
+void app_warpMouse() {
+	SDL_WarpMouseInWindow(data.window, app_getWidth() / 2, app_getHeight() / 2);
+}

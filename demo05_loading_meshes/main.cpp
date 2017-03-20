@@ -4,7 +4,7 @@
 /*
 This was create to make it easier...
 */
-struct Shader {
+struct Shader_Test {
 	GLuint vid;
 	GLuint fid;
 	GLuint pid;
@@ -176,7 +176,7 @@ public:
 
 	//Triangle tris;
 
-	Shader shader;
+	Shader_Test shader;
 
 	// Texture Uniform
 	GLuint texture_uniform;

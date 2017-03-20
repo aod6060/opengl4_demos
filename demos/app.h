@@ -24,3 +24,6 @@ Uint32 app_getWidth();
 Uint32 app_getHeight();
 
 void app_exit();
+
+void app_warpMouse();
+

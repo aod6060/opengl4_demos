@@ -91,6 +91,7 @@ void input_getMouseCoords(glm::vec2& mc) {
 
 void input_setMouseGrab(bool b) {
 	if (b) {
+		app_warpMouse();
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 	}
 	else {

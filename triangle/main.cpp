@@ -10,7 +10,7 @@ std::vector<glm::vec3> vertices = {
 /*
 	This was create to make it easier...
 */
-struct Shader {
+struct Shader_Test {
 	GLuint vid;
 	GLuint fid;
 	GLuint pid;
@@ -22,7 +22,7 @@ public:
 	GLuint vbo = 0;
 	GLuint vao = 0;
 
-	Shader shader;
+	Shader_Test shader;
 
 	virtual void init() {
 		// Creating Vertex Buffer Object

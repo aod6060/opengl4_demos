@@ -1,5 +1,15 @@
 #pragma once
 
+
+struct Vector3Utils {
+	static glm::vec3 left;
+	static glm::vec3 right;
+	static glm::vec3 up;
+	static glm::vec3 down;
+	static glm::vec3 back;
+	static glm::vec3 front;
+};
+
 std::string util_loadTextFile(std::string cap);
 
 void util_loadTextFile(std::string fn, std::vector<std::string>& out);

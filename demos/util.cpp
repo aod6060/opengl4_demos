@@ -1,5 +1,14 @@
 #include "sys.h"
 
+
+
+glm::vec3 Vector3Utils::left = glm::vec3(-1.0f, 0.0f, 0.0f);
+glm::vec3 Vector3Utils::right = glm::vec3(1.0f, 0.0f, 0.0f);
+glm::vec3 Vector3Utils::up = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec3 Vector3Utils::down = glm::vec3(0.0f, -1.0f, 0.0f);
+glm::vec3 Vector3Utils::back = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 Vector3Utils::front = glm::vec3(0.0f, 0.0f, 1.0f);
+
 std::string util_loadTextFile(std::string cap) {
 	std::ifstream in(cap.c_str());
 	std::stringstream ss;
