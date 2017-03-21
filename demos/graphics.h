@@ -157,6 +157,7 @@ struct Camera {
 	glm::vec2 rot;
 
 	glm::mat4 projection;
+	glm::mat4 view;
 
 	float sence;
 
@@ -188,4 +189,6 @@ struct Camera {
 	void setSence(float sence);
 
 	void setSpeed(float speed);
+
+	glm::vec3 getForward();
 };

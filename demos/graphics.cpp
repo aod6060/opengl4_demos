@@ -367,7 +367,7 @@ void Mesh::release() {
 void Shader::init(GLenum type, std::string fn) {
 	id = glCreateShader(type);
 	std::string src = util_loadTextFile(fn);
-	std::cout << src << std::endl;
+	//std::cout << src << std::endl;
 	const char* csrc = src.c_str();
 	glShaderSource(id, 1, &csrc, 0);
 	glCompileShader(id);
@@ -487,7 +487,7 @@ void Camera::render(Program& program) {
 
 	glm::mat4 translate = glm::translate(-pos);
 
-	glm::mat4 view = rot * translate;
+	view = rot * translate;
 
 	program.setMat4f("view", view);
 }
@@ -567,4 +567,12 @@ void Camera::setSence(float sence) {
 
 void Camera::setSpeed(float speed) {
 	this->speed = speed;
+}
+
+glm::vec3 Camera::getForward() {
+	return glm::vec3(
+		view[2][0],
+		view[2][1],
+		view[2][2]
+	);
 }
