@@ -492,6 +492,20 @@ void Camera::render(Program& program) {
 	program.setMat4f("view", view);
 }
 
+void Camera::grabMatrices(glm::mat4& view, glm::mat4& projection) {
+	glm::quat xrot = glm::angleAxis(glm::radians(rot.x), Vector3Utils::right);
+	glm::quat yrot = glm::angleAxis(glm::radians(rot.y), Vector3Utils::up);
+
+	glm::mat4 rot = glm::toMat4(xrot * yrot);
+
+	glm::mat4 translate = glm::translate(-pos);
+
+	projection = this->projection;
+
+	view = rot * translate;
+
+}
+
 void Camera::update(float delta) {
 
 	if (input_isMouseGrab()) {

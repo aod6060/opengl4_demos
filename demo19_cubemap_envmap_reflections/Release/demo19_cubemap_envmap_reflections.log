@@ -1,0 +1,7 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+  Generating code
+  All 882 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  demo19_cubemap_envmap_reflections.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo19_cubemap_envmap_reflections\..\bin\demo19_cubemap_envmap_reflections.exe
+  demo19_cubemap_envmap_reflections.vcxproj -> ..\bin\demo19_cubemap_envmap_reflections.pdb (Full PDB)

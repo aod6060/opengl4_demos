@@ -1,1 +1,10 @@
-﻿
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+main.cpp(74): warning C4018: '<': signed/unsigned mismatch
+main.cpp(117): warning C4018: '<': signed/unsigned mismatch
+main.cpp(137): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  All 1016 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  demo06_optimizing_mesh_loading.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo06_optimizing_mesh_loading\..\bin\demo06_optimizing_mesh_loading.exe
+  demo06_optimizing_mesh_loading.vcxproj -> ..\bin\demo06_optimizing_mesh_loading.pdb (Full PDB)

@@ -316,6 +316,12 @@ public:
 
 	virtual void release() {
 		// Release MeshOBJ
+		barrel.release();
+		cube.release();
+		death_donut.release();
+		floor.release();
+		monkey.release();
+		sphere.release();
 		// Release Texture
 		dirt.release();
 		grass.release();

@@ -172,6 +172,8 @@ struct Camera {
 
 	void render(Program& program);
 
+	void grabMatrices(glm::mat4& view, glm::mat4& projection);
+
 	void update(float delta);
 
 	glm::vec3 getPos();

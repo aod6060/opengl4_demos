@@ -4,3 +4,4 @@ obj_to_smf ./data/meshes/death_donut.obj ./data/meshes/death_donut.smf
 obj_to_smf ./data/meshes/floor.obj ./data/meshes/floor.smf
 obj_to_smf ./data/meshes/monkey.obj ./data/meshes/monkey.smf
 obj_to_smf ./data/meshes/sphere.obj ./data/meshes/sphere.smf
+obj_to_smf ./data/meshes/skybox_mesh.obj ./data/meshes/skybox_mesh.smf

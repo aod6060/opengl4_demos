@@ -1,1 +1,8 @@
-﻿
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+main.cpp(209): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  All 848 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  demo16_lighting_spot_lights.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo16_lighting_spot_lights\..\bin\demo16_lighting_spot_lights.exe
+  demo16_lighting_spot_lights.vcxproj -> ..\bin\demo16_lighting_spot_lights.pdb (Full PDB)
