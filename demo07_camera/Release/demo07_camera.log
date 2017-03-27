@@ -1,7 +1,9 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   main.cpp
   Generating code
-  All 1268 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 1268 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    54 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   demo07_camera.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo07_camera\..\bin\demo07_camera.exe
   demo07_camera.vcxproj -> ..\bin\demo07_camera.pdb (Full PDB)

@@ -1,0 +1,9 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+  Generating code
+  3 of 868 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    15 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  demo26_shadow_mapping.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo26_shadow_mapping\..\bin\demo26_shadow_mapping.exe
+  demo26_shadow_mapping.vcxproj -> ..\bin\demo26_shadow_mapping.pdb (Full PDB)

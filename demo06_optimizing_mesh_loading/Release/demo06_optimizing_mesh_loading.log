@@ -4,7 +4,9 @@ main.cpp(74): warning C4018: '<': signed/unsigned mismatch
 main.cpp(117): warning C4018: '<': signed/unsigned mismatch
 main.cpp(137): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  All 1016 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 1016 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    51 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   demo06_optimizing_mesh_loading.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo06_optimizing_mesh_loading\..\bin\demo06_optimizing_mesh_loading.exe
   demo06_optimizing_mesh_loading.vcxproj -> ..\bin\demo06_optimizing_mesh_loading.pdb (Full PDB)

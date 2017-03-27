@@ -9,18 +9,39 @@ public:
 
 	void init(std::string fn, GLenum min_filter = GL_LINEAR, GLenum mag_filter = GL_LINEAR, bool mipmap = false);
 
+	void initEmpty(GLuint width, GLuint height, GLenum internalFormat = GL_RGB, GLenum format = GL_RGB, GLuint type = GL_UNSIGNED_BYTE);
+
+	void setParameters(GLenum type, GLenum value);
+
 	void bind(GLenum e = GL_TEXTURE0);
-
 	void unbind(GLenum e = GL_TEXTURE0);
-
 	void release();
-
 	GLuint getWidth();
-
 	GLuint getHeight();
-
 	GLuint getID();
+};
 
+struct Cubemap {
+	GLuint id;
+
+	enum Side {
+		RIGHT = 0,
+		LEFT,
+		TOP,
+		BOTTOM,
+		BACK,
+		FRONT,
+		NUM_SIDES
+	};
+
+	std::vector<std::string> maps = std::vector<std::string>(6);
+
+	void init();
+	void bind(GLenum type = GL_TEXTURE0);
+	void unbind(GLenum type = GL_TEXTURE0);
+	void release();
+	void setTexture(Side side, std::string fn);
+	SDL_Surface* loadImage(std::string fn);
 };
 
 struct MeshOBJ {
@@ -56,11 +77,8 @@ struct MeshOBJ {
 	GLuint vertexArrays;
 
 	void init(std::string fn);
-
 	void handleFace(std::string str, GLuint& vertice, GLuint& texCoord, GLuint& normal);
-
 	void render();
-
 	void release();
 };
 
@@ -91,9 +109,7 @@ struct Mesh {
 	GLuint vertexArray;
 
 	void init(std::string fn);
-
 	void render();
-
 	void release();
 };
 
@@ -101,7 +117,6 @@ struct Shader {
 	GLuint id;
 
 	void init(GLenum type, std::string fn);
-
 	void release();
 };
 
@@ -114,47 +129,32 @@ struct Program {
 	std::map<std::string, GLuint> uniforms;
 
 	void attach(Shader* shader);
-
 	void init();
-
 	void bind();
-
 	void unbind();
-
 	void release();
-
 	void create_uniform(std::string name);
-
 	// Integers
 	void set1i(std::string name, int i);
-
 	void set2i(std::string name, const glm::ivec2& v);
-
 	void set3i(std::string name, const glm::ivec3& v);
-
 	void set4i(std::string name, const glm::ivec4& v);
-
 	// Floats
 	void set1f(std::string name, float i);
-
 	void set2f(std::string name, const glm::vec2& v);
-
 	void set3f(std::string name, const glm::vec3& v);
-
 	void set4f(std::string name, const glm::vec4& v);
-
 	// Matrices
 	void setMat2f(std::string name, const glm::mat2& m);
-
 	void setMat3f(std::string name, const glm::mat3& m);
-
 	void setMat4f(std::string name, const glm::mat4& m);
-
 };
 
 struct Camera {
 	glm::vec3 pos;
 	glm::vec2 rot;
+
+	glm::vec2 mouseVel;
 
 	glm::mat4 projection;
 	glm::mat4 view;
@@ -171,26 +171,17 @@ struct Camera {
 		float speed);
 
 	void render(Program& program);
-
 	void grabMatrices(glm::mat4& view, glm::mat4& projection);
-
 	void update(float delta);
-
 	glm::vec3 getPos();
-
 	glm::vec2 getRot();
-
 	float getSence();
-
 	float getSpeed();
-
 	void setPos(const glm::vec3& pos);
-
 	void setRot(const glm::vec2& rot);
-
 	void setSence(float sence);
-
 	void setSpeed(float speed);
-
 	glm::vec3 getForward();
+	glm::vec2 getMouseVel();
+
 };

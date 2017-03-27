@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+main.cpp(204): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  All 904 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  demo25_framebuffer_postprocessing_bloom.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\demo25_framebuffer_postprocessing_bloom\..\bin\demo25_framebuffer_postprocessing_bloom.exe
+  demo25_framebuffer_postprocessing_bloom.vcxproj -> ..\bin\demo25_framebuffer_postprocessing_bloom.pdb (Full PDB)

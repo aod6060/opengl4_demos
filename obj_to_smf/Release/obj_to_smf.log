@@ -7,8 +7,9 @@ main.cpp(186): warning C4018: '<': signed/unsigned mismatch
 main.cpp(206): warning C4018: '<': signed/unsigned mismatch
 main.cpp(223): warning C4018: '<': signed/unsigned mismatch
   Generating code
-c:\users\fred\desktop\project4\opengl_exp\demos\obj_to_smf\main.cpp(67): warning C4715: 'SDL_main': not all control paths return a value
-  All 936 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 936 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    51 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   obj_to_smf.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\obj_to_smf\..\bin\obj_to_smf.exe
   obj_to_smf.vcxproj -> ..\bin\obj_to_smf.pdb (Full PDB)

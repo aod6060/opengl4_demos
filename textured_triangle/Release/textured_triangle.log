@@ -2,7 +2,9 @@
   main.cpp
 main.cpp(45): warning C4018: '<': signed/unsigned mismatch
   Generating code
+  0 of 348 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    46 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  All 348 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   textured_triangle.vcxproj -> C:\Users\Fred\Desktop\project4\opengl_exp\demos\textured_triangle\..\bin\demo03_textured_triangle.exe
   textured_triangle.vcxproj -> ..\bin\demo03_textured_triangle.pdb (Full PDB)

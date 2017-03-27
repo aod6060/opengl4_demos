@@ -47,6 +47,29 @@ void Texture2D::init(std::string fn, GLenum min_filter, GLenum mag_filter, bool 
 	SDL_FreeSurface(surface);
 }
 
+void Texture2D::initEmpty(GLuint width, GLuint height, GLenum internalFormat, GLenum format, GLuint type) {
+	this->width = width;
+	this->height = height;
+	glGenTextures(1, &id);
+	bind();
+	glTexImage2D(
+		GL_TEXTURE_2D,
+		0,
+		internalFormat,
+		this->width,
+		this->height,
+		0,
+		format,
+		type,
+		0
+	);
+	unbind();
+}
+
+void Texture2D::setParameters(GLenum type, GLenum value) {
+	glTexParameteri(GL_TEXTURE_2D, type, value);
+}
+
 void Texture2D::bind(GLenum e) {
 	glActiveTexture(e);
 	glBindTexture(GL_TEXTURE_2D, id);
@@ -73,8 +96,62 @@ GLuint Texture2D::getID() {
 	return this->id;
 }
 
-// MeshOBJ
+void Cubemap::init() {
+	glGenTextures(1, &id);
+	bind();
+	for (GLuint i = 0; i < maps.size(); i++) {
+		SDL_Surface* surf = loadImage(maps[i]);
+		glTexImage2D(
+			GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+			0,
+			GL_RGB,
+			surf->w,
+			surf->h,
+			0,
+			GL_RGB,
+			GL_UNSIGNED_BYTE,
+			surf->pixels
+		);
+		SDL_FreeSurface(surf);
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	unbind();
+}
 
+void Cubemap::bind(GLenum type) {
+	glActiveTexture(type);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, id);
+}
+
+void Cubemap::unbind(GLenum type) {
+	glActiveTexture(type);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+}
+
+void Cubemap::release() {
+	glDeleteTextures(1, &id);
+}
+
+// 
+void Cubemap::setTexture(Side side, std::string fn) {
+	maps[side] = fn;
+}
+
+SDL_Surface* Cubemap::loadImage(std::string fn) {
+	SDL_Surface* surf = IMG_Load(fn.c_str());
+
+	if (surf == nullptr) {
+		std::cout << "Error: " << fn << " doesn't exist!!!" << std::endl;
+	}
+
+	return surf;
+}
+
+// MeshOBJ
 bool MeshOBJ::Vertex::operator == (const MeshOBJ::Vertex& v) const {
 	return this->vertex == v.vertex && this->texCoord == v.texCoord && this->normal == v.normal;
 }
@@ -518,6 +595,9 @@ void Camera::update(float delta) {
 		rot.y += mc.x * actualSencs * (0.001f + delta);
 		rot.x += mc.y * actualSencs * (0.001f + delta);
 
+		mouseVel.y = mc.x * actualSencs * (0.001f + delta);
+		mouseVel.x = mc.y * actualSencs * (0.001f + delta);
+
 		if (rot.y <= -360.0f) {
 			rot.y += 360.0f;
 		}
@@ -589,4 +669,8 @@ glm::vec3 Camera::getForward() {
 		view[2][1],
 		view[2][2]
 	);
+}
+
+glm::vec2 Camera::getMouseVel() {
+	return this->mouseVel;
 }

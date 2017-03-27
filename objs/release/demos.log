@@ -2,9 +2,9 @@
 C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   app.cpp
   graphics.cpp
-graphics.cpp(93): warning C4018: '<': signed/unsigned mismatch
-graphics.cpp(136): warning C4018: '<': signed/unsigned mismatch
-graphics.cpp(156): warning C4018: '<': signed/unsigned mismatch
+graphics.cpp(170): warning C4018: '<': signed/unsigned mismatch
+graphics.cpp(213): warning C4018: '<': signed/unsigned mismatch
+graphics.cpp(233): warning C4018: '<': signed/unsigned mismatch
   input.cpp
 input.cpp(88): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 input.cpp(89): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
